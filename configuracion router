@@ -1,0 +1,33 @@
+R1#config terminal                 
+Enter configuration commands, one per line.  End with CNTL/Z. 
+R1(config)#int ethernet 1/0 
+R1(config-if)#ip address 192.168.0.1 255.255.255.0 
+R1(config-if)#no shutdown 
+R1(config-if)#exit 
+R1(config)#service dhcp 
+R1(config)#ip dhcp pool CONEXION-POOL 
+R1(dhcp-config)#network 192.168.0.0 255.255.255.0 
+R1(dhcp-config)#default-router 192.168.0.1
+R1(dhcp-config)#dns-server 8.8.8.8 
+R1(dhcp-config)#exit 
+R1(config)#ip dhcp excluded-address 192.168.0.2  192.168.0.5 
+R1(config)#exit 
+R1#show ip int brief 
+Interface                  
+IP-Address      OK? Method Status                
+Protocol 
+FastEthernet0/0       
+Ethernet1/0                
+Ethernet1/1           
+Ethernet1/2           
+Ethernet1/3           
+     unassigned   
+   YES unset  administratively down down     
+192.168.0.1     YES manual up                
+     unassigned
+    up       
+      YES unset  administratively down down     
+     unassigned
+     unassigned
+      YES unset  administratively down down     
+      YES unset  administratively down down
